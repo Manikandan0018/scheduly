@@ -8,7 +8,7 @@ A full-stack scheduling platform built with MongoDB, Express.js, React (Vite), a
 
 ```
 scheduly/
-├── backend/
+├── server/
 │   ├── config/
 │   │   └── db.js                  # MongoDB connection
 │   ├── controllers/
@@ -31,7 +31,7 @@ scheduly/
 │   ├── package.json
 │   └── server.js
 │
-└── frontend/
+└── client/
     ├── src/
     │   ├── components/
     │   │   └── layout/
