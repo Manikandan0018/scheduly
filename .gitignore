@@ -1,0 +1,62 @@
+# =========================
+
+# ROOT IGNORE (FULL STACK)
+
+# =========================
+
+# ---- Dependencies ----
+
+node_modules/
+client/node_modules/
+server/node_modules/
+
+# ---- Build files ----
+
+dist/
+build/
+client/dist/
+server/dist/
+
+# ---- Environment files ----
+
+.env
+.env.*
+client/.env
+server/.env
+!.env.example
+
+# ---- Logs ----
+
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+pnpm-debug.log*
+
+# ---- OS files ----
+
+.DS_Store
+Thumbs.db
+
+# ---- IDE ----
+
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# ---- Vite cache ----
+
+client/.vite/
+client/.cache/
+
+# ---- MongoDB local data ----
+
+data/
+dump/
+
+# ---- Misc ----
+
+*.zip
+*.tar
+*.gz

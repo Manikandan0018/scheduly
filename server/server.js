@@ -15,13 +15,14 @@ const app = express();
 // Connect DB
 connectDB();
 
-// Middleware
+// ✅ CORS (Express)
 app.use(
   cors({
-    origin: process.env.CLIENT_URL || "http://localhost:5173",
+    origin: ["http://localhost:5173", "https://scheduly-one.vercel.app"],
     credentials: true,
   }),
 );
+
 app.use(express.json());
 
 // Health route
@@ -47,25 +48,25 @@ app.use((req, res) => {
   res.status(404).json({ message: "Route not found" });
 });
 
-// ✅ CREATE HTTP SERVER (instead of app.listen)
+// ✅ CREATE HTTP SERVER (FIRST)
 const server = http.createServer(app);
 
-// ✅ SOCKET.IO SETUP
+// ✅ CREATE SOCKET.IO (ONLY ONCE)
 const io = new Server(server, {
   cors: {
-    origin: process.env.CLIENT_URL || "http://localhost:5173",
+    origin: ["http://localhost:5173", "https://scheduly-one.vercel.app"],
+    methods: ["GET", "POST"],
     credentials: true,
   },
 });
 
-// make globally accessible
+// make global
 global.io = io;
 
-// socket connection
+// socket events
 io.on("connection", (socket) => {
   console.log("⚡ Socket connected:", socket.id);
 
-  // join personal room
   socket.on("joinUserRoom", (userId) => {
     socket.join(userId);
   });
@@ -75,6 +76,7 @@ io.on("connection", (socket) => {
   });
 });
 
+// start server
 const PORT = process.env.PORT || 5000;
 
 server.listen(PORT, () => {
